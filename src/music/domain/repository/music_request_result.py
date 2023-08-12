@@ -1,3 +1,6 @@
+from datetime import date
+
+
 class MusicRequestResult:
     __music_id: str
     __music_name: str
@@ -6,6 +9,7 @@ class MusicRequestResult:
     __popularity: int
     __duration: int
     __lyrics: str
+    __release_date: date
 
     def __init__(
             self,
@@ -15,7 +19,8 @@ class MusicRequestResult:
             music_image_url: str,
             popularity: int,
             duration: int,
-            lyrics: str
+            lyrics: str,
+            release_date: date
     ):
         self.__music_id = music_id
         self.__music_name = music_name
@@ -24,6 +29,7 @@ class MusicRequestResult:
         self.__popularity = popularity
         self.__duration = duration
         self.__lyrics = lyrics
+        self.__release_date = release_date
 
     @property
     def music_id(self) -> str:
@@ -52,3 +58,7 @@ class MusicRequestResult:
     @property
     def lyrics(self) -> str:
         return self.__lyrics
+
+    @property
+    def release_date(self) -> date:
+        return self.__release_date
