@@ -1,2 +1,0 @@
-class SemanticVO:
-    pass

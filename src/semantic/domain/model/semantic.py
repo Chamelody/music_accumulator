@@ -17,17 +17,17 @@ class Semantic:
         self.__text = text
 
     @property
-    def semantic_id(self):
+    def semantic_id(self) -> SemanticIdVO:
         return self.__semantic_id
 
     @property
-    def music_id(self):
+    def music_id(self) -> MusicIdVO:
         return self.__music_id
 
     @property
-    def emotion(self):
+    def emotion(self) -> EmotionVO:
         return self.__emotion
 
     @property
-    def text(self):
+    def text(self) -> TextVO:
         return self.__text

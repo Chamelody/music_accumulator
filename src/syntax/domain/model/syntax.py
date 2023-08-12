@@ -23,17 +23,17 @@ class Syntax:
         self.__cached_date = cached_date
 
     @property
-    def syntax_id(self):
+    def syntax_id(self) -> SyntaxIdVO:
         return self.__syntax_id
 
     @property
-    def music_id(self):
+    def music_id(self) -> MusicIdVO:
         return self.__music_id
 
     @property
-    def release_date(self):
+    def release_date(self) -> ReleaseDateVO:
         return self.__release_date
 
     @property
-    def cached_date(self):
+    def cached_date(self) -> CachedDateVO:
         return self.__cached_date
