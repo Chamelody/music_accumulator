@@ -1,0 +1,2 @@
+class EmotionVO:
+    pass
