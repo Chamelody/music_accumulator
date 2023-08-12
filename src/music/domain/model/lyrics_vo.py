@@ -1,0 +1,2 @@
+class LyricsVO:
+    pass
