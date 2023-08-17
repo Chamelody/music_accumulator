@@ -46,6 +46,9 @@ class Music:
         self.__cached_date = CachedDateVO(date.today())
         self.__release_date = release_date
 
+    def update_popularity(self, new_popularity: int) -> None:
+        self.__popularity = new_popularity
+
     @property
     def music_id(self) -> MusicIdVO:
         return self.__music_id
