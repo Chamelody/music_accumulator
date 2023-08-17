@@ -44,7 +44,7 @@ class CreateMusicService:
         return new_music
 
     def create_music_list_by_playlist_id(self, playlist_id: str) -> list[Music]:
-        music_id_list: list[str] = self.__music_api.get_music_id_list_by_playlist_id(playlist_id)
+        music_id_list: list[MusicIdVO] = self.__music_api.get_music_id_list_by_playlist_id(playlist_id)
         music_list: list[Music] = [self.create_music_by_id(music_id) for music_id in music_id_list]
         map(lambda music: self.__music_repository.save_music(music), music_list)
         return music_list

@@ -9,5 +9,5 @@ class MusicApi(Protocol):
     def get_music_by_music_id(self, music_id: MusicIdVO) -> MusicRequestResult:
         pass
 
-    def get_music_id_list_by_playlist_id(self, playlist_id: str) -> list[str]:
+    def get_music_id_list_by_playlist_id(self, playlist_id: str) -> list[MusicIdVO]:
         pass
