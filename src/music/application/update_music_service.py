@@ -1,3 +1,6 @@
+from dependency_injector.wiring import inject, Provide
+
+from src.config.di.music_dependency_container import MusicDependencyContainer
 from src.music.domain.model.music import Music
 from src.music.domain.repository.music_api import MusicApi
 from src.music.domain.repository.music_repository import MusicRepository
@@ -8,7 +11,12 @@ class UpdateMusicService:
     __music_api: MusicApi
     __music_repository: MusicRepository
 
-    def __init__(self, music_api: MusicApi, music_repository: MusicRepository):
+    @inject
+    def __init__(
+            self,
+            music_api: MusicApi = Provide[MusicDependencyContainer.music_api],
+            music_repository: MusicRepository = Provide[MusicDependencyContainer.music_repository]
+    ):
         self.__music_api = music_api
         self.__music_repository = music_repository
 

@@ -1,3 +1,6 @@
+from dependency_injector.wiring import inject, Provide
+
+from src.config.di.syntax_dependency_container import SyntaxDependencyContainer
 from src.syntax.domain.model.feature_vo import FeatureVO
 from src.syntax.domain.model.syntax import Syntax
 from src.syntax.domain.repository.syntax_api import SyntaxApi
@@ -9,7 +12,12 @@ class UpdateSyntaxService:
     __syntax_api: SyntaxApi
     __syntax_repository: SyntaxRepository
 
-    def __init__(self, syntax_api: SyntaxApi, syntax_repository: SyntaxRepository):
+    @inject
+    def __init__(
+            self,
+            syntax_api: SyntaxApi = Provide[SyntaxDependencyContainer.syntax_api],
+            syntax_repository: SyntaxRepository = Provide[SyntaxDependencyContainer.syntax_repository]
+    ):
         self.__syntax_api = syntax_api
         self.__syntax_repository = syntax_repository
 

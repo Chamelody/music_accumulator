@@ -1,4 +1,7 @@
+from dependency_injector.wiring import inject, Provide
+
 from src.common.domain.model.semantic_id_vo import SemanticIdVO
+from src.config.di.semantic_dependency_container import SemanticDependencyContainer
 from src.semantic.domain.model.semantic import Semantic
 from src.semantic.domain.repository.semantic_repository import SemanticRepository
 
@@ -7,8 +10,12 @@ class ReadSemanticQuery:
 
     __semantic_repository: SemanticRepository
 
-    def __init__(self, semantic_repository: SemanticRepository):
-        self.__semantic_repository = semantic_repository
+    @inject
+    def __init__(
+            self,
+            semantic_repository: SemanticRepository
+    ):
+        self.__semantic_repository = semantic_repository = Provide[SemanticDependencyContainer.semantic_repository]
 
     def get_semantic_by_id(self, semantic_id: SemanticIdVO) -> Semantic:
         return self.__semantic_repository.get_semantic_by_id(semantic_id)
