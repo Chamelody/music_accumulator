@@ -47,6 +47,8 @@ class Music:
         self.__release_date = release_date
 
     def update_popularity(self, new_popularity: int) -> None:
+        if not (0 <= new_popularity <= 100):
+            return  # Not update
         self.__popularity = new_popularity
 
     @property
