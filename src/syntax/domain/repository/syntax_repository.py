@@ -9,6 +9,9 @@ class SyntaxRepository(Protocol):
     def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> Syntax:
         pass
 
+    def get_all_syntax(self) -> list[Syntax]:
+        pass
+
     def save_syntax(self, syntax: Syntax) -> bool:
         pass
 

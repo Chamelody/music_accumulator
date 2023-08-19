@@ -23,6 +23,9 @@ class Syntax:
         self.__feature = feature
         self.__cached_date = CachedDateVO(date.today())
 
+    def update_feature(self, new_feature: FeatureVO) -> None:
+        self.__feature = new_feature
+
     @property
     def syntax_id(self) -> SyntaxIdVO:
         return self.__syntax_id

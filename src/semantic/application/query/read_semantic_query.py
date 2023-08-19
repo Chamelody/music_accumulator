@@ -3,7 +3,7 @@ from src.semantic.domain.model.semantic import Semantic
 from src.semantic.domain.repository.semantic_repository import SemanticRepository
 
 
-class ReadSemanticService:
+class ReadSemanticQuery:
 
     __semantic_repository: SemanticRepository
 

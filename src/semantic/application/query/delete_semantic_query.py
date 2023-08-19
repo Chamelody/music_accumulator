@@ -2,7 +2,7 @@ from src.common.domain.model.semantic_id_vo import SemanticIdVO
 from src.semantic.domain.repository.semantic_repository import SemanticRepository
 
 
-class DeleteSemanticService:
+class DeleteSemanticQuery:
 
     __semantic_repository: SemanticRepository
 

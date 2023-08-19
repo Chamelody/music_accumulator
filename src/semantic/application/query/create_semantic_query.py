@@ -6,7 +6,7 @@ from src.semantic.domain.repository.semantic_extract_model import SemanticExtrac
 from src.semantic.domain.repository.semantic_repository import SemanticRepository
 
 
-class CreateSemanticService:
+class CreateSemanticQuery:
 
     __semantic_extract_model: SemanticExtractModel
     __semantic_repository: SemanticRepository
