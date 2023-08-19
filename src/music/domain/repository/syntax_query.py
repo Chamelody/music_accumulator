@@ -10,5 +10,8 @@ class SyntaxQuery(Protocol):
     def create_syntax_by_music_id(self, music_id: MusicIdVO) -> SyntaxIdVO:
         pass
 
+    def delete_syntax_by_id(self, syntax_id: SyntaxIdVO) -> bool:
+        pass
+
     def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> SyntaxDto:
         pass

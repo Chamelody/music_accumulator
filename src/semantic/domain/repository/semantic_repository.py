@@ -9,6 +9,9 @@ class SemanticRepository(Protocol):
     def get_semantic_by_id(self, semantic_id: SemanticIdVO) -> Semantic:
         pass
 
+    def get_all_semantics(self) -> list[Semantic]:
+        pass
+
     def save_semantic(self, semantic: Semantic) -> bool:
         pass
 

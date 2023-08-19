@@ -16,6 +16,9 @@ class Semantic:
         self.__emotion = emotion
         self.__text = text
 
+    def update_emotion(self, new_emotion: EmotionVO) -> None:
+        self.__emotion = new_emotion
+
     @property
     def semantic_id(self) -> SemanticIdVO:
         return self.__semantic_id

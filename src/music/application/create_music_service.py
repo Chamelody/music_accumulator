@@ -21,13 +21,13 @@ class CreateMusicService:
         self.__music_repository = music_repository
         self.__music_api = music_api
 
-    def create_music_by_id(self, music_id: MusicIdVO) -> Music:
+    def create_and_save_music_by_id(self, music_id: MusicIdVO) -> Music:
         music_request_result: MusicRequestResult = self.__music_api.get_music_by_music_id(music_id)
         new_music_id: MusicIdVO = MusicIdVO(music_request_result.music_id)
         new_lyrics: LyricsVO = LyricsVO(music_request_result.lyrics)
         release_date: ReleaseDateVO = ReleaseDateVO(music_request_result.release_date)
         syntax_id: SyntaxIdVO = self.__syntax_query.create_syntax_by_music_id(new_music_id)
-        semantic_id: SemanticIdVO = self.__semantic_query.create_semantic(new_lyrics)
+        semantic_id: SemanticIdVO = self.__semantic_query.create_semantic(new_music_id, new_lyrics)
         new_music: Music = Music(
             music_id=new_music_id,
             sematic_id=semantic_id,
@@ -43,8 +43,8 @@ class CreateMusicService:
         self.__music_repository.save_music(new_music)
         return new_music
 
-    def create_music_list_by_playlist_id(self, playlist_id: str) -> list[Music]:
+    def create_and_save_music_list_by_playlist_id(self, playlist_id: str) -> list[Music]:
         music_id_list: list[MusicIdVO] = self.__music_api.get_music_id_list_by_playlist_id(playlist_id)
-        music_list: list[Music] = [self.create_music_by_id(music_id) for music_id in music_id_list]
-        map(lambda music: self.__music_repository.save_music(music), music_list)
+        music_list: list[Music] = [self.create_and_save_music_by_id(music_id) for music_id in music_id_list]
+        # map(lambda music: self.__music_repository.save_music(music), music_list)
         return music_list
