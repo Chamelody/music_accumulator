@@ -1,4 +1,8 @@
 from flask import Flask
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 from src.config.database.sqlalchemy_config import Base, engine
 from src.music.presentation.music_controller import music_controller
