@@ -1,4 +1,4 @@
-from typing import Protocol
+from typing import Protocol, Optional
 
 from src.common.domain.model.semantic_id_vo import SemanticIdVO
 from src.semantic.domain.model.semantic import Semantic
@@ -6,7 +6,7 @@ from src.semantic.domain.model.semantic import Semantic
 
 class SemanticRepository(Protocol):
 
-    def get_semantic_by_id(self, semantic_id: SemanticIdVO) -> Semantic:
+    def get_semantic_by_id(self, semantic_id: SemanticIdVO) -> Optional[Semantic]:
         pass
 
     def get_all_semantics(self) -> list[Semantic]:

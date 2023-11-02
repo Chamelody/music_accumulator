@@ -1,3 +1,5 @@
+from typing import Optional
+
 from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.music_id_vo import MusicIdVO
@@ -34,6 +36,9 @@ class CreateMusicService:
         self.__semantic_query = semantic_query
 
     def create_and_save_music_by_id(self, music_id: MusicIdVO) -> Music:
+        music: Optional[Music] = self.__music_repository.get_music_by_id(music_id)
+        if music is not None:
+            return music
         music_request_result: MusicRequestResult = self.__music_api.get_music_by_music_id(music_id)
         new_music_id: MusicIdVO = MusicIdVO(music_request_result.music_id)
         new_lyrics: LyricsVO = LyricsVO(music_request_result.lyrics)

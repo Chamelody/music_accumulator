@@ -1,3 +1,5 @@
+from typing import Optional
+
 from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.music_id_vo import MusicIdVO
@@ -23,8 +25,11 @@ class CreateSyntaxQuery:
         self.__syntax_api = syntax_api
         self.__syntax_repository = syntax_repository
 
-    def create_and_save_syntax_by_music_id(self, music_id: MusicIdVO):
+    def create_and_save_syntax_by_music_id(self, music_id: MusicIdVO) -> Syntax:
         new_syntax_id: SyntaxIdVO = SyntaxIdVO(music_id.id)
+        syntax: Optional[Syntax] = self.__syntax_repository.get_syntax_by_id(new_syntax_id)
+        if syntax is not None:
+            return syntax
         new_feature: FeatureVO = self.__syntax_api.get_feature_by_music_id(music_id)
         new_syntax: Syntax = Syntax(
             syntax_id=new_syntax_id,

@@ -1,4 +1,4 @@
-from typing import Protocol
+from typing import Protocol, Optional
 
 from src.common.domain.model.syntax_id_vo import SyntaxIdVO
 from src.syntax.domain.model.syntax import Syntax
@@ -6,7 +6,7 @@ from src.syntax.domain.model.syntax import Syntax
 
 class SyntaxRepository(Protocol):
 
-    def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> Syntax:
+    def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> Optional[Syntax]:
         pass
 
     def get_all_syntax(self) -> list[Syntax]:
