@@ -5,5 +5,5 @@ class SyntaxIdVO:
         self.__id = new_id
 
     @property
-    def id(self):
+    def id(self) -> str:
         return self.__id

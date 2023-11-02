@@ -29,7 +29,8 @@ class CreateSyntaxQuery:
         new_syntax: Syntax = Syntax(
             syntax_id=new_syntax_id,
             music_id=music_id,
-            feature=new_feature
+            feature=new_feature,
+            cached_date=None
         )
         self.__syntax_repository.save_syntax(new_syntax)
         return new_syntax

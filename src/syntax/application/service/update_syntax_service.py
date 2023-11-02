@@ -1,5 +1,8 @@
+from datetime import date
+
 from dependency_injector.wiring import inject, Provide
 
+from src.common.domain.model.cached_date_vo import CachedDateVO
 from src.config.di.syntax_dependency_container import SyntaxDependencyContainer
 from src.syntax.domain.model.feature_vo import FeatureVO
 from src.syntax.domain.model.syntax import Syntax
@@ -26,4 +29,5 @@ class UpdateSyntaxService:
         for syntax in all_syntax_list:
             new_feature: FeatureVO = self.__syntax_api.get_feature_by_music_id(syntax.music_id)
             syntax.update_feature(new_feature)
+            syntax.update_cached_date(CachedDateVO(date.today()))
             self.__syntax_repository.update_syntax(syntax)

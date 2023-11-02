@@ -27,7 +27,7 @@ class CreateSemanticQuery:
     def create_and_save_semantic_by_text(self, semantic_id: SemanticIdVO, text: TextVO) -> Semantic:
         new_emotion: EmotionVO = self.__semantic_extract_model.extract_emotion(text)
         new_semantic: Semantic = Semantic(
-            sematic_id=semantic_id,
+            semantic_id=semantic_id,
             music_id=MusicIdVO(semantic_id.id),
             emotion=new_emotion,
             text=text

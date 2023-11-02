@@ -10,8 +10,8 @@ class Semantic:
     __emotion: EmotionVO
     __text: TextVO
 
-    def __init__(self, sematic_id: SemanticIdVO, music_id: MusicIdVO, emotion: EmotionVO, text: TextVO):
-        self.__semantic_id = sematic_id
+    def __init__(self, semantic_id: SemanticIdVO, music_id: MusicIdVO, emotion: EmotionVO, text: TextVO):
+        self.__semantic_id = semantic_id
         self.__music_id = music_id
         self.__emotion = emotion
         self.__text = text

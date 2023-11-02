@@ -11,7 +11,7 @@ from src.syntax.infrastructure.model.syntax_do import SyntaxDO  # To load data o
 Base.metadata.create_all(bind=engine)
 
 app = Flask(__name__)
-app.register_blueprint(music_controller)
+app.register_blueprint(blueprint=music_controller)
 
 
 if __name__ == '__main__':

@@ -42,7 +42,7 @@ class CreateMusicService:
         semantic_id: SemanticIdVO = self.__semantic_query.create_semantic(new_music_id, new_lyrics)
         new_music: Music = Music(
             music_id=new_music_id,
-            sematic_id=semantic_id,
+            semantic_id=semantic_id,
             syntax_id=syntax_id,
             music_name=music_request_result.music_name,
             artists=music_request_result.artists,
@@ -50,6 +50,7 @@ class CreateMusicService:
             popularity=music_request_result.popularity,
             duration=music_request_result.duration,
             lyrics=new_lyrics,
+            cached_date=None,
             release_date=release_date
         )
         self.__music_repository.save_music(new_music)
