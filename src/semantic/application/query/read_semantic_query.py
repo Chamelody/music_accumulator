@@ -1,3 +1,5 @@
+from typing import Optional
+
 from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.semantic_id_vo import SemanticIdVO
@@ -17,7 +19,7 @@ class ReadSemanticQuery:
     ):
         self.__semantic_repository = semantic_repository = Provide[SemanticDependencyContainer.semantic_repository]
 
-    def get_semantic_by_id(self, semantic_id: SemanticIdVO) -> Semantic:
+    def get_semantic_by_id(self, semantic_id: SemanticIdVO) -> Optional[Semantic]:
         return self.__semantic_repository.get_semantic_by_id(semantic_id)
 
     def get_all_semantics(self) -> list[Semantic]:

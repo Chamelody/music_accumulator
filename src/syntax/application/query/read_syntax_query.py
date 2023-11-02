@@ -1,3 +1,5 @@
+from typing import Optional
+
 from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.syntax_id_vo import SyntaxIdVO
@@ -17,7 +19,7 @@ class ReadSyntaxQuery:
     ):
         self.__syntax_repository = syntax_repository
 
-    def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> Syntax:
+    def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> Optional[Syntax]:
         return self.__syntax_repository.get_syntax_by_id(syntax_id)
 
     def get_all_syntax_list(self) -> list[Syntax]:

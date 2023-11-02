@@ -1,3 +1,5 @@
+from typing import Optional
+
 from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.music_id_vo import MusicIdVO
@@ -16,7 +18,7 @@ class ReadMusicService:
     ):
         self.__music_repository = music_repository
 
-    def get_music_by_id(self, music_id: MusicIdVO) -> Music:
+    def get_music_by_id(self, music_id: MusicIdVO) -> Optional[Music]:
         return self.__music_repository.get_music_by_id(music_id)
 
     def get_all_music(self) -> list[Music]:
