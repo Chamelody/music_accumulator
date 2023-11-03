@@ -3,7 +3,7 @@ from datetime import date
 from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.cached_date_vo import CachedDateVO
-from src.config.di.syntax_dependency_container import SyntaxDependencyContainer
+from src.config.di.syntax_infra_dependency_container import SyntaxInfraDependencyContainer
 from src.syntax.domain.model.feature_vo import FeatureVO
 from src.syntax.domain.model.syntax import Syntax
 from src.syntax.domain.repository.syntax_api import SyntaxApi
@@ -18,8 +18,8 @@ class UpdateSyntaxService:
     @inject
     def __init__(
             self,
-            syntax_api: SyntaxApi = Provide[SyntaxDependencyContainer.syntax_api],
-            syntax_repository: SyntaxRepository = Provide[SyntaxDependencyContainer.syntax_repository]
+            syntax_api: SyntaxApi = Provide[SyntaxInfraDependencyContainer.syntax_api],
+            syntax_repository: SyntaxRepository = Provide[SyntaxInfraDependencyContainer.syntax_repository]
     ):
         self.__syntax_api = syntax_api
         self.__syntax_repository = syntax_repository

@@ -15,6 +15,8 @@ class SyntaxRepositoryImpl(SyntaxRepository):
     def get_syntax_by_id(self, syntax_id: SyntaxIdVO) -> Optional[Syntax]:
         try:
             syntax_do: SyntaxDO = session.query(SyntaxDO).filter(SyntaxDO.syntax_id == syntax_id.id).first()
+            if syntax_do is None:
+                return None
             return SyntaxObjectMapper.syntax_do_to_entity(syntax_do)
         except SQLAlchemyError as e:
             print(f"SQL Error: {e}")

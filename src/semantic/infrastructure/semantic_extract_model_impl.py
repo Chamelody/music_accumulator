@@ -6,4 +6,11 @@ from src.semantic.domain.repository.semantic_extract_model import SemanticExtrac
 class SemanticExtractModelImpl(SemanticExtractModel):
 
     def extract_emotion(self, text: TextVO) -> EmotionVO:
-        pass
+        # TODO implement this.
+        return EmotionVO(
+            happy=20,
+            sad=20,
+            fear=20,
+            anger=20,
+            love=20
+        )

@@ -33,7 +33,7 @@ class MusicObjectMapper:
             semantic_id=SemanticIdVO(music_do.semantic_id),
             syntax_id=SyntaxIdVO(music_do.syntax_id),
             music_name=music_do.music_name,
-            artists=music_do.split(','),
+            artists=music_do.artists.split(','),
             music_image_url=music_do.music_image_url,
             popularity=music_do.popularity,
             duration=music_do.duration,

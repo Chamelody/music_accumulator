@@ -6,7 +6,7 @@ from src.common.domain.model.music_id_vo import MusicIdVO
 from src.common.domain.model.release_date_vo import ReleaseDateVO
 from src.common.domain.model.semantic_id_vo import SemanticIdVO
 from src.common.domain.model.syntax_id_vo import SyntaxIdVO
-from src.config.di.music_dependency_container import MusicDependencyContainer
+from src.config.di.music_infra_dependency_container import MusicInfraDependencyContainer
 from src.music.domain.model.lyrics_vo import LyricsVO
 from src.music.domain.model.music import Music
 from src.music.domain.repository.music_api import MusicApi
@@ -25,10 +25,10 @@ class CreateMusicService:
     @inject
     def __init__(
             self,
-            music_repository: MusicRepository = Provide[MusicDependencyContainer.music_repository],
-            music_api: MusicApi = Provide[MusicDependencyContainer.music_api],
-            syntax_query: SyntaxQuery = Provide[MusicDependencyContainer.syntax_query],
-            semantic_query: SemanticQuery = Provide[MusicDependencyContainer.semantic_query]
+            music_repository: MusicRepository = Provide[MusicInfraDependencyContainer.music_repository],
+            music_api: MusicApi = Provide[MusicInfraDependencyContainer.music_api],
+            syntax_query: SyntaxQuery = Provide[MusicInfraDependencyContainer.syntax_query],
+            semantic_query: SemanticQuery = Provide[MusicInfraDependencyContainer.semantic_query]
     ):
         self.__music_repository = music_repository
         self.__music_api = music_api

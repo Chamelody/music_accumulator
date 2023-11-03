@@ -13,6 +13,6 @@ class MusicDO(Base):
     music_image_url = Column(String(), nullable=False)
     popularity = Column(Integer(), nullable=False)
     duration = Column(Integer(), nullable=False)
-    lyrics = Column(String(), nullable=False)
+    lyrics = Column(String(), nullable=True)
     cached_date = Column(Date(), nullable=False)
     release_date = Column(Date(), nullable=False)

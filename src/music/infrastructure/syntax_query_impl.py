@@ -1,8 +1,8 @@
-from dependency_injector.providers import Provider
+from dependency_injector.wiring import Provide, inject
 
 from src.common.domain.model.music_id_vo import MusicIdVO
 from src.common.domain.model.syntax_id_vo import SyntaxIdVO
-from src.config.di.syntax_dependency_container import SyntaxDependencyContainer
+from src.config.di.syntax_app_dependency_container import SyntaxAppDependencyContainer
 from src.music.domain.repository.syntax_dto import SyntaxDto
 from src.music.domain.repository.syntax_query import SyntaxQuery
 from src.syntax.application.query.create_syntax_query import CreateSyntaxQuery
@@ -16,11 +16,12 @@ class SyntaxQueryImpl(SyntaxQuery):
     __read_syntax_query: ReadSyntaxQuery
     __delete_syntax_query: DeleteSyntaxQuery
 
+    @inject
     def __init__(
             self,
-            create_syntax_query: CreateSyntaxQuery = Provider[SyntaxDependencyContainer.create_syntax_query],
-            read_syntax_query: ReadSyntaxQuery = Provider[SyntaxDependencyContainer.read_syntax_query],
-            delete_syntax_query: DeleteSyntaxQuery = Provider[SyntaxDependencyContainer.delete_syntax_query]
+            create_syntax_query: CreateSyntaxQuery = Provide[SyntaxAppDependencyContainer.create_syntax_query],
+            read_syntax_query: ReadSyntaxQuery = Provide[SyntaxAppDependencyContainer.read_syntax_query],
+            delete_syntax_query: DeleteSyntaxQuery = Provide[SyntaxAppDependencyContainer.delete_syntax_query]
     ):
         self.__create_syntax_query = create_syntax_query
         self.__read_syntax_query = read_syntax_query

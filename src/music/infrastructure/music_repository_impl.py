@@ -15,6 +15,8 @@ class MusicRepositoryImpl(MusicRepository):
     def get_music_by_id(self, music_id: MusicIdVO) -> Optional[Music]:
         try:
             music_do: MusicDO = session.query(MusicDO).filter(MusicDO.music_id == music_id.id).first()
+            if music_do is None:
+                return None
             return MusicObjectMapper.music_do_to_entity(music_do)
         except SQLAlchemyError as e:
             print(f"SQL Error: {e}")

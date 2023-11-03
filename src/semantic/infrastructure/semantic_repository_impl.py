@@ -17,6 +17,8 @@ class SemanticRepositoryImpl(SemanticRepository):
             semantic_do: SemanticDO = session.query(SemanticDO)\
                                              .filter(SemanticDO.semantic_id == semantic_id.id)\
                                              .first()
+            if semantic_do is None:
+                return None
             return SemanticObjectMapper.semantic_do_to_entity(semantic_do)
         except SQLAlchemyError as e:
             print(f"SQL Error: {e}")

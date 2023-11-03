@@ -4,7 +4,7 @@ from dependency_injector.wiring import inject, Provide
 
 from src.common.domain.model.music_id_vo import MusicIdVO
 from src.common.domain.model.semantic_id_vo import SemanticIdVO
-from src.config.di.semantic_dependency_container import SemanticDependencyContainer
+from src.config.di.semantic_infra_dependency_container import SemanticInfraDependencyContainer
 from src.semantic.domain.model.emotion_vo import EmotionVO
 from src.semantic.domain.model.semantic import Semantic
 from src.semantic.domain.model.text_vo import TextVO
@@ -20,8 +20,8 @@ class CreateSemanticQuery:
     @inject
     def __init__(
             self,
-            semantic_extract_model: SemanticExtractModel = Provide[SemanticDependencyContainer.semantic_extract_model],
-            semantic_repository: SemanticRepository = Provide[SemanticDependencyContainer.semantic_repository]
+            semantic_extract_model: SemanticExtractModel = Provide[SemanticInfraDependencyContainer.semantic_extract_model],
+            semantic_repository: SemanticRepository = Provide[SemanticInfraDependencyContainer.semantic_repository]
     ):
         self.__semantic_extract_model = semantic_extract_model
         self.__semantic_repository = semantic_repository
