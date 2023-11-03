@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 from src.common.domain.model.cached_date_vo import CachedDateVO
 from src.common.domain.model.music_id_vo import MusicIdVO
@@ -16,15 +17,19 @@ class Syntax:
             self,
             syntax_id: SyntaxIdVO,
             music_id: MusicIdVO,
-            feature: FeatureVO
+            feature: FeatureVO,
+            cached_date: Optional[CachedDateVO]
     ):
         self.__syntax_id = syntax_id
         self.__music_id = music_id
         self.__feature = feature
-        self.__cached_date = CachedDateVO(date.today())
+        self.__cached_date = CachedDateVO(date.today()) if cached_date is None else cached_date
 
     def update_feature(self, new_feature: FeatureVO) -> None:
         self.__feature = new_feature
+
+    def update_cached_date(self, new_cached_date: CachedDateVO) -> None:
+        self.__cached_date = new_cached_date
 
     @property
     def syntax_id(self) -> SyntaxIdVO:

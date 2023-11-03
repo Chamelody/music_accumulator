@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 from src.common.domain.model.music_id_vo import MusicIdVO
 from src.common.domain.model.semantic_id_vo import SemanticIdVO
@@ -24,7 +25,7 @@ class Music:
     def __init__(
             self,
             music_id: MusicIdVO,
-            sematic_id: SemanticIdVO,
+            semantic_id: SemanticIdVO,
             syntax_id: SyntaxIdVO,
             music_name: str,
             artists: list[str],
@@ -32,10 +33,11 @@ class Music:
             popularity: int,
             duration: int,
             lyrics: LyricsVO,
+            cached_date: Optional[CachedDateVO],
             release_date: ReleaseDateVO
     ):
         self.__music_id = music_id
-        self.__semantic_id = sematic_id
+        self.__semantic_id = semantic_id
         self.__syntax_id = syntax_id
         self.__music_name = music_name
         self.__artists = artists
@@ -43,7 +45,7 @@ class Music:
         self.__popularity = popularity
         self.__duration = duration
         self.__lyrics = lyrics
-        self.__cached_date = CachedDateVO(date.today())
+        self.__cached_date = CachedDateVO(date.today()) if cached_date is None else cached_date
         self.__release_date = release_date
 
     def update_popularity(self, new_popularity: int) -> None:
@@ -56,11 +58,11 @@ class Music:
         return self.__music_id
 
     @property
-    def semantic(self) -> SemanticIdVO:
+    def semantic_id(self) -> SemanticIdVO:
         return self.__semantic_id
 
     @property
-    def syntax(self) -> SyntaxIdVO:
+    def syntax_id(self) -> SyntaxIdVO:
         return self.__syntax_id
 
     @property
