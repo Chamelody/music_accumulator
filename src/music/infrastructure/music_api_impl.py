@@ -4,6 +4,8 @@ import json
 from typing import Optional
 
 import requests
+from requests import RequestException
+from spotipy import SpotifyException
 
 from src.common.domain.model.music_id_vo import MusicIdVO
 from src.config.api.spotipy_config import sp
@@ -17,7 +19,11 @@ class MusicApiImpl(MusicApi):
     SPOTIFY_LYRICS_API_URL = "https://spotify-lyric-api-984e7b4face0.herokuapp.com/?trackid="
 
     def get_lyrics(self, music_id: MusicIdVO) -> Optional[str]:
-        res = requests.get(f"{self.SPOTIFY_LYRICS_API_URL}{music_id.id}")
+        try:
+            res = requests.get(f"{self.SPOTIFY_LYRICS_API_URL}{music_id.id}")
+        except RequestException as e:
+            print(f"API ERROR: {e}")
+            return None
         json_data = json.loads(res.text)
         if 'lines' not in json_data:
             return None
@@ -27,9 +33,12 @@ class MusicApiImpl(MusicApi):
             lyrics += line['words'] + "\n"
         return lyrics
 
-    def get_music_by_music_id(self, music_id: MusicIdVO) -> MusicRequestResult:
-        # TODO: Handle exception and make it return Optional.
-        track = sp.track(track_id=music_id.id)
+    def get_music_by_music_id(self, music_id: MusicIdVO) -> Optional[MusicRequestResult]:
+        try:
+            track = sp.track(track_id=music_id.id)
+        except SpotifyException as e:
+            print(f"API ERROR: {e}")
+            return None
         new_music_id: str = track['id']
         music_name: str = track['name']
         artists: list[str] = [artist['name'] for artist in track['artists']]
@@ -51,8 +60,11 @@ class MusicApiImpl(MusicApi):
         )
 
     def get_music_id_list_by_playlist_id(self, playlist_id: str) -> list[MusicIdVO]:
-        # TODO: Handle exception.
-        playlist = sp.playlist(playlist_id=playlist_id)
+        try:
+            playlist = sp.playlist(playlist_id=playlist_id)
+        except SpotifyException as e:
+            print(f"API ERROR: {e}")
+            return []
         items = playlist['tracks']['items']
         music_id_list: list[MusicIdVO] = list()
         for item in items:

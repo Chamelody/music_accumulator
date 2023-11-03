@@ -35,11 +35,13 @@ class CreateMusicService:
         self.__syntax_query = syntax_query
         self.__semantic_query = semantic_query
 
-    def create_and_save_music_by_id(self, music_id: MusicIdVO) -> Music:
+    def create_and_save_music_by_id(self, music_id: MusicIdVO) -> Optional[Music]:
         music: Optional[Music] = self.__music_repository.get_music_by_id(music_id)
         if music is not None:
             return music
-        music_request_result: MusicRequestResult = self.__music_api.get_music_by_music_id(music_id)
+        music_request_result: Optional[MusicRequestResult] = self.__music_api.get_music_by_music_id(music_id)
+        if music_request_result is None:
+            return None
         new_music_id: MusicIdVO = MusicIdVO(music_request_result.music_id)
         new_lyrics: LyricsVO = LyricsVO(music_request_result.lyrics)
         release_date: ReleaseDateVO = ReleaseDateVO(music_request_result.release_date)
@@ -63,6 +65,6 @@ class CreateMusicService:
 
     def create_and_save_music_list_by_playlist_id(self, playlist_id: str) -> list[Music]:
         music_id_list: list[MusicIdVO] = self.__music_api.get_music_id_list_by_playlist_id(playlist_id)
-        music_list: list[Music] = [self.create_and_save_music_by_id(music_id) for music_id in music_id_list]
+        music_list: list[Optional[Music]] = [self.create_and_save_music_by_id(music_id) for music_id in music_id_list]
         # map(lambda music: self.__music_repository.save_music(music), music_list)
         return music_list
