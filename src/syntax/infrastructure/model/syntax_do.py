@@ -5,6 +5,7 @@ from src.config.database.sqlalchemy_config import Base
 
 class SyntaxDO(Base):
     __tablename__ = 'syntax'
+    # TODO Specify String length
     syntax_id = Column(String(), nullable=False, primary_key=True)
     music_id = Column(String(), ForeignKey('music.music_id'), nullable=False)
     danceability = Column(Float(), nullable=False)

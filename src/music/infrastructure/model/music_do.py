@@ -5,6 +5,7 @@ from src.config.database.sqlalchemy_config import Base
 
 class MusicDO(Base):
     __tablename__ = 'music'
+    # TODO Specify String length
     music_id = Column(String(), nullable=False, primary_key=True)
     semantic_id = Column(String(), nullable=False)
     syntax_id = Column(String(), nullable=False)

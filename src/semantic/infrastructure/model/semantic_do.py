@@ -5,6 +5,7 @@ from src.config.database.sqlalchemy_config import Base
 
 class SemanticDO(Base):
     __tablename__ = 'semantic'
+    # TODO Specify String length
     semantic_id = Column(String(), nullable=False, primary_key=True)
     music_id = Column(String(), ForeignKey('music.music_id'), nullable=False)
     happy = Column(Integer(), nullable=False)

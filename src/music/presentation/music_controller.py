@@ -20,4 +20,16 @@ def add_track(
         create_music_service: CreateMusicService = Provide[MusicAppDependencyContainer.create_music_service]
 ):
     create_music_service.create_and_save_music_by_id(MusicIdVO(track_id))
+    # TODO return music dto.
+    return "200"
+
+
+@music_controller.route("/add_playlist/<playlist_id>")
+@inject
+def add_playlist(
+    playlist_id: str,
+    create_music_service: CreateMusicService = Provide[MusicAppDependencyContainer.create_music_service]
+):
+    create_music_service.create_and_save_music_list_by_playlist_id(playlist_id)
+    # TODO return music dto list.
     return "200"
